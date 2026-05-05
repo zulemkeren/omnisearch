@@ -45,6 +45,7 @@ export async function POST(req: Request) {
 
   const docs = retrieveDocs(message, 3);
   const apiKey = process.env.OPENAI_API_KEY;
+  const baseURL = process.env.OPENAI_BASE_URL;
   const model = process.env.OPENAI_MODEL || "gpt-4o-mini";
 
   const stream = new ReadableStream({
@@ -56,6 +57,7 @@ export async function POST(req: Request) {
         if (apiKey) {
           await streamFromOpenAI({
             apiKey,
+            baseURL,
             model,
             message,
             history: body.history || [],
@@ -96,6 +98,7 @@ export async function POST(req: Request) {
 
 async function streamFromOpenAI({
   apiKey,
+  baseURL,
   model,
   message,
   history,
@@ -103,13 +106,14 @@ async function streamFromOpenAI({
   controller,
 }: {
   apiKey: string;
+  baseURL?: string;
   model: string;
   message: string;
   history: { role: "user" | "assistant"; content: string }[];
   docs: Document[];
   controller: ReadableStreamDefaultController<Uint8Array>;
 }) {
-  const client = new OpenAI({ apiKey });
+  const client = new OpenAI({ apiKey, baseURL });
   const userPrompt = `Context documents:\n\n${buildContext(docs)}\n\nUser question: ${message}\n\nAnswer concisely with inline [n] citations.`;
 
   const completion = await client.chat.completions.create({
