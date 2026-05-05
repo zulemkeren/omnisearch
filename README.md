@@ -1,5 +1,7 @@
 # OmniSearch
 
+Live Demo: https://omnisearch-eight.vercel.app/
+
 > AI-powered enterprise knowledge assistant. Connect Notion, Drive, Slack, Jira, and Confluence — get instant, cited answers from your company's collective knowledge.
 
 ![Stack](https://img.shields.io/badge/Next.js-14-000?logo=next.js)
