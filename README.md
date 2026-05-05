@@ -113,6 +113,20 @@ To swap in a real vector store, replace `retrieveDocs()` in `lib/mock-data.ts` w
 
 The streaming pipeline, UI, error handling, and OpenAI integration are production-ready. Swap the data layer when you're ready to ship.
 
+## Example Prompt
+```bash
+What is our remote work policy?
+How do I request PTO?
+Summarize the Q4 engineering roadmap
+What happened in the October 28 incident?
+How do I get set up as a new engineer?
+What are the JWT best practices?
+When is the deployment freeze?
+What's the status of the billing service migration?
+Tell me about the on-call rotation for payments
+What's our design system built on?
+```
+
 ## License
 
 MIT
